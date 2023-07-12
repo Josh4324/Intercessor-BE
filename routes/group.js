@@ -13,8 +13,16 @@ router.post("/", token.verifyToken, groupController.createGroup);
 
 router.post("/add/:id", token.verifyToken, groupController.addMemberToGroup);
 
+router.post(
+  "/remove/:id",
+  token.verifyToken,
+  groupController.removeMemberFromGroup
+);
+
 router.get("/", token.verifyToken, groupController.getAllGroup);
 
 router.patch("/:id", token.verifyToken, groupController.updateGroup);
+
+router.get("/:id", token.verifyToken, groupController.getOneGroup);
 
 module.exports = router;

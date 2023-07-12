@@ -3,7 +3,11 @@ const Group = require("../model/group");
 module.exports = class GroupService {
   async findAllGroup(max, offset, name) {
     if (!name) {
-      return await Post.find({}).limit(max).skip(offset).sort({ date: -1 });
+      return await Group.find({})
+        .limit(max)
+        .skip(offset)
+        .sort({ date: -1 })
+        .populate("users");
     }
     if (name) {
       return await Post.find({
@@ -11,12 +15,13 @@ module.exports = class GroupService {
       })
         .limit(max)
         .skip(offset)
-        .sort({ date: -1 });
+        .sort({ date: -1 })
+        .populate("users");
     }
   }
 
   async findGroupWithId(id) {
-    return await Group.findOne({ _id: id });
+    return await Group.findOne({ _id: id }).populate("users");
   }
 
   async createGroup(postObj) {
