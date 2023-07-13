@@ -60,7 +60,7 @@ module.exports = class UserService {
   }
 
   async findUserWithId(id) {
-    return await User.findOne({ _id: id });
+    return await User.findOne({ _id: id }).populate("groups");
   }
 
   async findUserWithEmailAndGetPassword(email) {
