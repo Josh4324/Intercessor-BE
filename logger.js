@@ -19,7 +19,7 @@ const userLogger = createLogger({
   ],
 });
 
-const postLogger = createLogger({
+const groupLogger = createLogger({
   levels: config.syslog.levels,
   format: combine(
     timestamp({
@@ -29,11 +29,11 @@ const postLogger = createLogger({
   ),
   transports: [
     new transports.Console({ level: "error" }),
-    new transports.File({ filename: "logs/post.log", level: "info" }),
+    new transports.File({ filename: "logs/group.log", level: "info" }),
   ],
 });
 
-const seriesLogger = createLogger({
+const prayerLogger = createLogger({
   levels: config.syslog.levels,
   format: combine(
     timestamp({
@@ -43,72 +43,12 @@ const seriesLogger = createLogger({
   ),
   transports: [
     new transports.Console({ level: "error" }),
-    new transports.File({ filename: "logs/series.log", level: "info" }),
-  ],
-});
-
-const messageLogger = createLogger({
-  levels: config.syslog.levels,
-  format: combine(
-    timestamp({
-      format: "YYYY-MM-DD HH:mm:ss",
-    }),
-    json()
-  ),
-  transports: [
-    new transports.Console({ level: "error" }),
-    new transports.File({ filename: "logs/message.log", level: "info" }),
-  ],
-});
-
-const commitmentLogger = createLogger({
-  levels: config.syslog.levels,
-  format: combine(
-    timestamp({
-      format: "YYYY-MM-DD HH:mm:ss",
-    }),
-    json()
-  ),
-  transports: [
-    new transports.Console({ level: "error" }),
-    new transports.File({ filename: "logs/commit.log", level: "info" }),
-  ],
-});
-
-const requestLogger = createLogger({
-  levels: config.syslog.levels,
-  format: combine(
-    timestamp({
-      format: "YYYY-MM-DD HH:mm:ss",
-    }),
-    json()
-  ),
-  transports: [
-    new transports.Console({ level: "error" }),
-    new transports.File({ filename: "logs/request.log", level: "info" }),
-  ],
-});
-
-const interestLogger = createLogger({
-  levels: config.syslog.levels,
-  format: combine(
-    timestamp({
-      format: "YYYY-MM-DD HH:mm:ss",
-    }),
-    json()
-  ),
-  transports: [
-    new transports.Console({ level: "error" }),
-    new transports.File({ filename: "logs/interest.log", level: "info" }),
+    new transports.File({ filename: "logs/prayer.log", level: "info" }),
   ],
 });
 
 module.exports = {
   userLogger,
-  postLogger,
-  seriesLogger,
-  messageLogger,
-  commitmentLogger,
-  requestLogger,
-  interestLogger,
+  prayerLogger,
+  groupLogger,
 };

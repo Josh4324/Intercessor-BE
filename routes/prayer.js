@@ -1,39 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const postController = require("../controllers/post");
-const multer = require("multer");
+const prayerController = require("../controllers/prayer");
 const validation = require("../middlewares/validation");
-const auth = require("../middlewares/authorization");
-const upload = multer({ dest: "uploads/" });
 const { Token } = require("../helpers");
 
 const token = new Token();
 
-router.post(
-  "/",
-  token.verifyToken,
-  auth.authorization("admin"),
-  upload.single("image"),
-  postController.createPost
-);
+router.post("/", token.verifyToken, prayerController.createPrayer);
 
-router.get("/", token.verifyToken, postController.getAllPost);
+router.get("/", token.verifyToken, prayerController.getAllPrayer);
 
-router.patch(
-  "/:id",
-  token.verifyToken,
-  auth.authorization("admin"),
-  postController.updatePost
-);
-
-router.patch(
-  "/image/:id",
-  token.verifyToken,
-  auth.authorization("admin"),
-  upload.single("image"),
-  postController.updatePostImage
-);
-
-router.get("/:id", token.verifyToken, postController.getOnePost);
+router.patch("/:id", token.verifyToken, prayerController.updatePrayer);
 
 module.exports = router;

@@ -1,14 +1,7 @@
 const GroupService = require("../services/group");
 const UserService = require("../services/user");
-const cloudinary = require("cloudinary").v2;
 const { Response } = require("../helpers");
-const { postLogger } = require("../logger");
-
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-});
+const { groupLogger } = require("../logger");
 
 const groupService = new GroupService();
 const userService = new UserService();
@@ -23,11 +16,11 @@ exports.createGroup = async (req, res) => {
       "Group created successfully",
       group
     );
-    postLogger.info(`New post created - ${id}`);
+    groupLogger.info(`New post created - ${id}`);
     return res.status(response.code).json(response);
   } catch (err) {
     const response = new Response(false, 500, "Server Error", err);
-    postLogger.error(`An error occured: ${err} - ${id}`);
+    groupLogger.error(`An error occured: ${err} - ${id}`);
     return res.status(response.code).json(response);
   }
 };
@@ -62,11 +55,11 @@ exports.addMemberToGroup = async (req, res) => {
     });
 
     const response = new Response(true, 200, "Group updated successfully");
-    postLogger.info(`Post Updated - ${id}`);
+    groupLogger.info(`Post Updated - ${id}`);
     return res.status(response.code).json(response);
   } catch (err) {
     const response = new Response(false, 500, "Server Error", err);
-    postLogger.error(`An error occured: ${err} - ${id}`);
+    groupLogger.error(`An error occured: ${err} - ${id}`);
     return res.status(response.code).json(response);
   }
 };
@@ -92,11 +85,11 @@ exports.removeMemberFromGroup = async (req, res) => {
     });
 
     const response = new Response(true, 200, "Group updated successfully");
-    postLogger.info(`Post Updated - ${id}`);
+    groupLogger.info(`Post Updated - ${id}`);
     return res.status(response.code).json(response);
   } catch (err) {
     const response = new Response(false, 500, "Server Error", err);
-    postLogger.error(`An error occured: ${err} - ${id}`);
+    groupLogger.error(`An error occured: ${err} - ${id}`);
     return res.status(response.code).json(response);
   }
 };
@@ -114,11 +107,11 @@ exports.updateGroup = async (req, res) => {
       "Group updated successfully",
       group
     );
-    postLogger.info(`Post Updated - ${id}`);
+    groupLogger.info(`Post Updated - ${id}`);
     return res.status(response.code).json(response);
   } catch (err) {
     const response = new Response(false, 500, "Server Error", err);
-    postLogger.error(`An error occured: ${err} - ${id}`);
+    groupLogger.error(`An error occured: ${err} - ${id}`);
     return res.status(response.code).json(response);
   }
 };
@@ -143,11 +136,11 @@ exports.getAllGroup = async (req, res) => {
 
     const groups = await groupService.findAllGroup(limit, offset, name);
     const response = new Response(true, 200, "Success", groups);
-    postLogger.info(`Get all posts - ${id}`);
+    groupLogger.info(`Get all posts - ${id}`);
     return res.status(response.code).json(response);
   } catch (err) {
     const response = new Response(false, 500, "Server Error", err);
-    postLogger.error(`An error occured: ${err} - ${id}`);
+    groupLogger.error(`An error occured: ${err} - ${id}`);
     return res.status(response.code).json(response);
   }
 };
@@ -158,11 +151,11 @@ exports.getOneGroup = async (req, res) => {
     let pid = req.params.id;
     const group = await groupService.findGroupWithId(pid);
     const response = new Response(true, 200, "Success", group);
-
+    groupLogger.info(`Get a post - ${id}`);
     return res.status(response.code).json(response);
   } catch (err) {
     const response = new Response(false, 500, "Server Error", err);
-
+    groupLogger.error(`An error occured: ${err} - ${id}`);
     return res.status(response.code).json(response);
   }
 };

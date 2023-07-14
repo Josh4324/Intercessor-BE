@@ -1,7 +1,7 @@
 const PrayerService = require("../services/prayer");
 const UserService = require("../services/user");
-const cloudinary = require("cloudinary").v2;
 const { Response } = require("../helpers");
+const { prayerLogger } = require("../logger");
 
 const prayerService = new PrayerService();
 const userService = new UserService();
@@ -19,11 +19,11 @@ exports.createPrayer = async (req, res) => {
       "Prayer created successfully",
       prayer
     );
-
+    prayerLogger.info(`New prayer created - ${id}`);
     return res.status(response.code).json(response);
   } catch (err) {
     const response = new Response(false, 500, "Server Error", err);
-
+    prayerLogger.error(`An error occured: ${err} - ${id}`);
     return res.status(response.code).json(response);
   }
 };
@@ -39,10 +39,11 @@ exports.updatePrayer = async (req, res) => {
       "Prayer updated successfully",
       prayer
     );
-
+    prayerLogger.info(`Prayer Updated - ${id}`);
     return res.status(response.code).json(response);
   } catch (err) {
     const response = new Response(false, 500, "Server Error", err);
+    prayerLogger.error(`An error occured: ${err} - ${id}`);
     return res.status(response.code).json(response);
   }
 };
@@ -67,11 +68,11 @@ exports.getAllPrayer = async (req, res) => {
 
     const prayers = await groupService.findAllGroup(limit, offset, title);
     const response = new Response(true, 200, "Success", prayers);
-
+    prayerLogger.info(`Get all prayers - ${id}`);
     return res.status(response.code).json(response);
   } catch (err) {
     const response = new Response(false, 500, "Server Error", err);
-
+    prayerLogger.error(`An error occured: ${err} - ${id}`);
     return res.status(response.code).json(response);
   }
 };
