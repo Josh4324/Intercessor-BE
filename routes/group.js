@@ -9,6 +9,36 @@ const { Token } = require("../helpers");
 
 const token = new Token();
 
+/**
+ * @openapi
+ * '/api/v1/group':
+ *  post:
+ *     tags:
+ *     - Group
+ *     summary: Create Group
+ *     requestBody:
+ *        content:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                name:
+ *                  type: string
+ *                description:
+ *                  type: string
+ *                  default: Desc
+ *     responses:
+ *      200:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      404:
+ *        description: Not Found
+ *      500:
+ *        description: Server Error
+ *     security:
+ *        - bearerAuth: []
+ *     description: Only an authenticated user can access this route
+ */
 router.post("/", token.verifyToken, groupController.createGroup);
 
 router.post("/add/:id", token.verifyToken, groupController.addMemberToGroup);
