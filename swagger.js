@@ -5,8 +5,8 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "EDEN API",
-      description: "EDEN API endpoints documented on swagger",
+      title: "INTERCESSOR API",
+      description: "Intercessor endpoints documented on swagger",
       contact: {
         name: "Joshua Adesanya",
         email: "adesanyajoshua@ymail.com",
@@ -25,7 +25,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:4000/",
+        url: "http://localhost:6000/",
         description: "Local server",
       },
       {
