@@ -10,7 +10,7 @@ const options = {
       contact: {
         name: "Joshua Adesanya",
         email: "adesanyajoshua@ymail.com",
-        url: "https://github.com/Josh4324/Eden",
+        url: "https://github.com/Josh4324/Intercessor-BE",
       },
       version: "1.0.0",
     },
@@ -25,7 +25,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:6000/",
+        url: "http://localhost:3000/",
         description: "Local server",
       },
       {
