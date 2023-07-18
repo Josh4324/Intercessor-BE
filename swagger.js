@@ -25,7 +25,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000/api",
+        url: "http://localhost:3000",
         description: "Local server",
       },
       {
@@ -42,9 +42,9 @@ const swaggerSpec = swaggerJsdoc(options);
 
 module.exports = (app, port) => {
   // Swagger Page
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   // Documentation in JSON format
-  app.get("/docs.json", (req, res) => {
+  app.get("/api/docs.json", (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.send(swaggerSpec);
   });
