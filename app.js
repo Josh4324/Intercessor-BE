@@ -21,7 +21,7 @@ app.use("/api/v1/group", groupRoutes);
 
 swagger(app, port);
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.status(200).json({
     status: "Success",
     message: `Welcome to Intercessor served on port ${port}`,
@@ -50,5 +50,5 @@ mongoose
 
 //listening to port
 app.listen(port, () => {
-  console.log(`EDEN Server is running on port ${port}`);
+  console.log(`Intercessor Server is running on port ${port}`);
 });
