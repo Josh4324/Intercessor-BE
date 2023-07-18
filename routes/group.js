@@ -51,13 +51,13 @@ router.post("/", token.verifyToken, groupController.createGroup);
  * @openapi
  * '/api/v1/group/add/{id}':
  *  post:
- *      parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: Group Id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Group Id
  *     tags:
  *     - Group
  *     summary: Add member
@@ -88,13 +88,13 @@ router.post("/add/:id", token.verifyToken, groupController.addMemberToGroup);
  * @openapi
  * '/api/v1/group/remove/{id}':
  *  post:
- *      parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: Group Id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Group Id
  *     tags:
  *     - Group
  *     summary: Remove member
