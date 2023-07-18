@@ -42,9 +42,9 @@ const swaggerSpec = swaggerJsdoc(options);
 
 module.exports = (app, port) => {
   // Swagger Page
-  app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   // Documentation in JSON format
-  app.get("/api/docs.json", (req, res) => {
+  app.get("/docs.json", (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.send(swaggerSpec);
   });
